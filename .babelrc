@@ -1,16 +1,4 @@
 {
-  "presets": ["@babel/preset-env"],
-  "env": {
-    "production": {
-      "plugins": [
-        "@babel/plugin-transform-react-jsx",
-      ]
-    },
-    "test": {
-      "plugins": [
-        "@babel/plugin-transform-react-jsx",
-        "istanbul",
-      ]
-    }
-  }
+  "presets": ["esnext", "react"]
+  
 }
