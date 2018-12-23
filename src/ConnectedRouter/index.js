@@ -89,6 +89,7 @@ export const createConnectedRouter = (nameInState) => {
   const ConnectedRouterWithContext = (props) => {
     const ContextToUse = props.context || SimredReactContext
 
+    /* istanbul ignore if */
     if (ContextToUse == null) {
       throw new Error('Conext cannot be null')
     }
