@@ -1,21 +1,21 @@
 import { createReducer } from 'simred'
 
 const reducerFunctions = (history) => {
-  const locationChange = (state, actions, location, action) => {
+  const locationChange = () => (location, action) => {
     return { location, action }
   }
 
-  const callHistoryMethod = (state, actions, method, ...args) => {
+  const callHistoryMethod = (state) => (method, ...args) => {
     history[method](...args)
 
     return state
   }
 
-  const push = (state, actions, ...args) => callHistoryMethod(state, actions, 'push', ...args)
-  const replace = (state, actions, ...args) => callHistoryMethod(state, actions, 'replace', ...args)
-  const go = (state, actions, ...args) => callHistoryMethod(state, actions, 'go', ...args)
-  const goBack = (state, actions, ...args) => callHistoryMethod(state, actions, 'goBack', ...args)
-  const goForward = (state, actions, ...args) => callHistoryMethod(state, actions, 'goForward', ...args)
+  const push = (state) => (...args) => callHistoryMethod(state)('push', ...args)
+  const replace = (state) => (...args) => callHistoryMethod(state)('replace', ...args)
+  const go = (state) => (...args) => callHistoryMethod(state)('go', ...args)
+  const goBack = (state) => (...args) => callHistoryMethod(state)('goBack', ...args)
+  const goForward = (state) => (...args) => callHistoryMethod(state)('goForward', ...args)
 
   return {
     locationChange,
