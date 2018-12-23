@@ -120,7 +120,7 @@ describe('Connected Router', function () {
       expect(pathname).toEqual("/")
       // expect(render).toEqual("<div>slash</div>")
 
-      store.getActions().router.push('/other')
+      store.actions.router.push('/other')
       console.log(res.containsMatchingElement(<div>other</div>))
     }
 
@@ -162,7 +162,7 @@ describe('Connected Router', function () {
       expect(pathname).toEqual("/")
       // expect(render).toEqual("<div>slash</div>")
 
-      const routerActions = store.getActions().router
+      const routerActions = store.actions.router
 
       routerActions.push('/other')
       routerActions.goBack()
