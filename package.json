@@ -7,7 +7,13 @@
     "build": "babel src --out-dir ./lib",
     "test": "jest --coverage --runInBand"
   },
-  "keywords": [],
+  "keywords": [
+    "react",
+    "reactjs",
+    "router",
+    "react-router",
+    "simred"
+  ],
   "author": "",
   "license": "MIT",
   "dependencies": {
@@ -27,12 +33,9 @@
     "babel-preset-react": "^6.24.1",
     "enzyme": "^3.8.0",
     "enzyme-adapter-react-16": "^1.7.1",
-    "istanbul": "^0.4.5",
     "jest": "^23.6.0",
-    "nyc": "^13.1.0",
     "react": "^16.7.0",
     "react-dom": "^16.7.0",
-    "react-dom-server": "0.0.5",
     "react-test-renderer": "^16.7.0"
   },
   "jest": {
