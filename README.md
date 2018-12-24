@@ -1,6 +1,8 @@
-# simred-react-router [![NPM version](https://badge.fury.io/js/simred-react-router.svg)](https://npmjs.org/package/simred-react-router)  [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)]() ![Tests](https://img.shields.io/badge/tests-4%2F4-brightgreen.svg) ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
+# simred-react-router [![NPM version](https://badge.fury.io/js/simred-react-router.svg)](https://npmjs.org/package/simred-react-router)  ![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg) ![Tests](https://img.shields.io/badge/tests-4%2F4-brightgreen.svg) ![Coverage](https://img.shields.io/badge/coverage-100%25-brightgreen.svg)
 
 > React Router bindings to Simred state manager
+
+If you do not know what Simred is, checkout [the project's GitHub page](https://github.com/gaelph/simred)
 
 ## Installation
 
