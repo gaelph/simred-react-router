@@ -1,7 +1,7 @@
 {
   "name": "simred-react-router",
   "version": "1.0.0",
-  "description": "",
+  "description": "React Router bindings to Simred state manager",
   "main": "lib/index.js",
   "scripts": {
     "build": "babel src --out-dir ./lib",
@@ -14,8 +14,13 @@
     "react-router",
     "simred"
   ],
-  "author": "",
+  "author": "Gaël PHILIPPE",
   "license": "MIT",
+  "homepage": "https://github.com/gaelph/simred-react-router",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gaelph/simred-react-router.git"
+  },
   "dependencies": {
     "react-router": "^4.3.1",
     "react-simred": "file:/Users/gaelphilippe/IdeaProjects/simred/react-simred",
