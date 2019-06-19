@@ -121,7 +121,6 @@ describe('Connected Router', function () {
       // expect(render).toEqual("<div>slash</div>")
 
       store.actions.router.push('/other')
-      console.log(res.containsMatchingElement(<div>other</div>))
     }
 
     expect(render).not.toThrow()
@@ -157,7 +156,6 @@ describe('Connected Router', function () {
 
       const pathname = store.getState().router.location.pathname
       expect(res.containsMatchingElement(<div>slash</div>)).toBeTruthy()
-      console.log(res.html())
 
       expect(pathname).toEqual("/")
       // expect(render).toEqual("<div>slash</div>")

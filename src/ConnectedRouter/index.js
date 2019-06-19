@@ -10,19 +10,36 @@ export const createConnectedRouter = (nameInState) => {
     constructor(props) {
       super(props)
 
-      this.inTimeTravelling = false
+      this.state = {
+        inTimeTravelling: false
+      }
 
-      const { history, store } = props
+      this.handleLocationChange = (function (location, action) {
+        // Dispatch onLocationChanged except when we're in time travelling
+        if (!this.state.inTimeTravelling && props.onLocationChanged) {
+          props.onLocationChanged(location, action)
+        } else {
+          this.setState({ inTimeTravelling: false })
+        }
+      }).bind(this)
 
-      store.subscribe((state) => {
-        const routerState = state[nameInState]
+      // Listen to history changes
+      this.unlisten = props.history.listen(this.handleLocationChange)
+      // Dispatch a location change action for the initial location
+      // handleLocationChange(props.history.location, props.history.action)
+    }
+
+    static getDerivedStateFromProps(props, state) {
+
+      const { location, history } = props
+      if (!location || !history) return state
 
         const {
           pathname: pathnameInStore,
           search: searchInStore,
           hash: hashInStore
-        } = routerState.location
-        
+        } = location
+
         const {
           pathname: pathnameInHistory,
           search: searchInHistory,
@@ -31,7 +48,7 @@ export const createConnectedRouter = (nameInState) => {
 
         // If we do time travelling, the location in store is changed but location in history is not changed
         if (pathnameInHistory !== pathnameInStore || searchInHistory !== searchInStore || hashInHistory !== hashInStore) {
-          this.inTimeTravelling = true
+          state.inTimeTravelling = true
           // Update history's location to match store's location
           props.history.push({
             pathname: pathnameInStore,
@@ -39,21 +56,13 @@ export const createConnectedRouter = (nameInState) => {
             hash: hashInStore,
           })
         }
-      })
 
-      const handleLocationChange = (location, action) => {
-        // Dispatch onLocationChanged except when we're in time travelling
-        if (!this.inTimeTravelling) {
-          props.onLocationChanged(location, action)
-        } else {
-          this.inTimeTravelling = false
-        }
-      }
+      return state
+    }
 
-      // Listen to history changes
-      this.unlisten = props.history.listen(handleLocationChange)
-      // Dispatch a location change action for the initial location
-      handleLocationChange(props.history.location, props.history.action)
+    componentDidMount() {
+      const { history } = this.props
+      this.handleLocationChange(history.location, history.action)
     }
 
     componentWillUnmount() {
@@ -63,7 +72,7 @@ export const createConnectedRouter = (nameInState) => {
 
     render() {
       const { history, children } = this.props
-      
+
       return (
         <Router history={history}>
           {children}
@@ -96,10 +105,10 @@ export const createConnectedRouter = (nameInState) => {
 
     return (
       <ContextToUse.Consumer>
-        {({ store }) => <ConnectedRouter store={store} {...props} />}
+        {ctx => ctx ? <ConnectedRouter store={ctx.store} {...props} /> : <></>}
       </ContextToUse.Consumer>
     )
   }
 
-  return connect(mapStateToProps, mapActionsToProps)(ConnectedRouterWithContext)
+  return connect(mapStateToProps, mapActionsToProps)(ConnectedRouter)
 }
