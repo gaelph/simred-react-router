@@ -1,6 +1,6 @@
 {
   "name": "simred-react-router",
-  "version": "2.0.0",
+  "version": "2.0.1",
   "description": "React Router bindings to Simred state manager",
   "main": "lib/index.js",
   "scripts": {
